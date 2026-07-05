@@ -130,7 +130,7 @@ func main() {
 	// --- HTTP ---
 
 	router := gin.New()
-	router.Use(gin.Recovery(), httpx.RequestLogger(log))
+	router.Use(gin.Recovery(), httpx.CORS(), httpx.RequestLogger(log))
 
 	router.GET("/healthz", func(c *gin.Context) {
 		sqlDB, err := db.DB()
