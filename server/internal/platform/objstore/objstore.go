@@ -7,6 +7,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"time"
 
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
@@ -79,4 +80,18 @@ func (s *Store) Put(ctx context.Context, key string, data []byte, contentType st
 		bytes.NewReader(data), int64(len(data)),
 		minio.PutObjectOptions{ContentType: contentType})
 	return err
+}
+
+// PresignedGet returns a time-limited URL for one private object — the only
+// way audio is ever exposed to a client (BACKEND_PLAN.md §12).
+func (s *Store) PresignedGet(ctx context.Context, key string, ttl time.Duration) (string, error) {
+	u, err := s.client.PresignedGetObject(ctx, s.bucket, key, ttl, nil)
+	if err != nil {
+		return "", err
+	}
+	return u.String(), nil
+}
+
+func (s *Store) Remove(ctx context.Context, key string) error {
+	return s.client.RemoveObject(ctx, s.bucket, key, minio.RemoveObjectOptions{})
 }

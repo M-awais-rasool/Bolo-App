@@ -42,6 +42,21 @@ type (
 	AudioStore interface {
 		Put(ctx context.Context, key string, data []byte, contentType string) error
 	}
+
+	// CompanionGrowth is checked synchronously on completion — it's one
+	// indexed count plus a threshold compare, and the response needs the
+	// answer (BACKEND_PLAN.md §6 step 10).
+	CompanionGrowth interface {
+		RecordMastery(ctx context.Context, childID uuid.UUID, totalMastered int) (bool, error)
+	}
+
+	// Events publishes the async signals from BACKEND_PLAN.md §9:
+	// mastery.updated for reporting, lesson.generation.requested when a
+	// child runs out of curriculum.
+	Events interface {
+		MasteryUpdated(ctx context.Context, childID uuid.UUID) error
+		LessonGenerationRequested(ctx context.Context, childID uuid.UUID, categoryCode, reason string) error
+	}
 )
 
 type Service struct {
@@ -50,13 +65,16 @@ type Service struct {
 	catalog        Catalog
 	scorer         speech.Scorer
 	audio          AudioStore
+	companion      CompanionGrowth
+	events         Events
 	audioRetention time.Duration
 }
 
-func NewService(repo *Repository, children ChildAccess, catalog Catalog, scorer speech.Scorer, audio AudioStore, audioRetention time.Duration) *Service {
+func NewService(repo *Repository, children ChildAccess, catalog Catalog, scorer speech.Scorer, audio AudioStore, companion CompanionGrowth, events Events, audioRetention time.Duration) *Service {
 	return &Service{
 		repo: repo, children: children, catalog: catalog,
-		scorer: scorer, audio: audio, audioRetention: audioRetention,
+		scorer: scorer, audio: audio, companion: companion, events: events,
+		audioRetention: audioRetention,
 	}
 }
 
@@ -182,7 +200,7 @@ type SessionSummary struct {
 	LessonMastered           bool
 	WordsMasteredDelta       int64
 	NextLessonUnlocked       *string
-	CompanionGrowthTriggered bool // wired to the mastery.updated job in M3
+	CompanionGrowthTriggered bool
 }
 
 // CompleteSession is idempotent by session state: the first call freezes
@@ -232,10 +250,32 @@ func (s *Service) CompleteSession(ctx context.Context, session *LessonSession) (
 		case err == nil:
 			summary.NextLessonUnlocked = &next.ClientID
 		case errors.Is(err, content.ErrLessonNotFound):
-			// End of the curriculum — the M4 generation trigger fires here.
+			// Curriculum exhausted — ask the contentgen agent for a new
+			// lesson. The child never sees a content wall (BACKEND_PLAN.md
+			// §7.1); the worker dedupes retried triggers.
+			if err := s.events.LessonGenerationRequested(ctx, session.ChildID, session.CategoryCode, "curriculum_exhausted"); err != nil {
+				return nil, err
+			}
 		default:
 			return nil, err
 		}
+	}
+
+	// Growth is reported by the completion that crosses a stage; a retry of
+	// the same completion recomputes the summary but reports grew=false —
+	// at-least-once semantics the client's celebration screen can live with.
+	total, err := s.repo.TotalMasteredCount(ctx, session.ChildID)
+	if err != nil {
+		return nil, err
+	}
+	grew, err := s.companion.RecordMastery(ctx, session.ChildID, int(total))
+	if err != nil {
+		return nil, err
+	}
+	summary.CompanionGrowthTriggered = grew
+
+	if err := s.events.MasteryUpdated(ctx, session.ChildID); err != nil {
+		return nil, err
 	}
 	return summary, nil
 }

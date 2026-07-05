@@ -61,6 +61,28 @@ func (c *Catalog) LessonAfter(ctx context.Context, categoryCode string, orderInd
 	return toInfo(&rec)
 }
 
+// LessonsInOrder returns the shared curriculum in journey order — the
+// overlay's unlock computation walks this list.
+func (c *Catalog) LessonsInOrder(ctx context.Context, categoryCode string) ([]LessonInfo, error) {
+	var recs []LessonRecord
+	err := c.db.WithContext(ctx).
+		Where("category_code = ? AND child_id IS NULL AND status = 'active'", categoryCode).
+		Order("order_index").
+		Find(&recs).Error
+	if err != nil {
+		return nil, err
+	}
+	infos := make([]LessonInfo, 0, len(recs))
+	for i := range recs {
+		info, err := toInfo(&recs[i])
+		if err != nil {
+			return nil, err
+		}
+		infos = append(infos, *info)
+	}
+	return infos, nil
+}
+
 func toInfo(rec *LessonRecord) (*LessonInfo, error) {
 	var lesson LessonContent
 	if err := json.Unmarshal(rec.Content, &lesson); err != nil {

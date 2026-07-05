@@ -33,6 +33,12 @@ type Config struct {
 	// Which pronunciation scorer backs the speech module ("stub" until a
 	// vendor is chosen).
 	SpeechScorer string
+
+	// Lesson generation: "stub" (deterministic templates, dev/test) or
+	// "anthropic" (Claude via the official SDK).
+	ContentgenProvider string
+	ContentgenModel    string
+	AnthropicAPIKey    string
 }
 
 func (c *Config) IsDevelopment() bool { return c.Env == "development" }
@@ -53,6 +59,8 @@ func Load() (*Config, error) {
 	v.SetDefault("S3_AUDIO_BUCKET", "bolo-audio")
 	v.SetDefault("AUDIO_RETENTION", "2160h") // 90 days
 	v.SetDefault("SPEECH_SCORER", "stub")
+	v.SetDefault("CONTENTGEN_PROVIDER", "stub")
+	v.SetDefault("CONTENTGEN_MODEL", "claude-opus-4-8")
 
 	// .env is a development convenience; real environments set env vars.
 	v.SetConfigFile(".env")
@@ -75,6 +83,10 @@ func Load() (*Config, error) {
 		S3AudioBucket:   v.GetString("S3_AUDIO_BUCKET"),
 		AudioRetention:  v.GetDuration("AUDIO_RETENTION"),
 		SpeechScorer:    v.GetString("SPEECH_SCORER"),
+
+		ContentgenProvider: v.GetString("CONTENTGEN_PROVIDER"),
+		ContentgenModel:    v.GetString("CONTENTGEN_MODEL"),
+		AnthropicAPIKey:    v.GetString("ANTHROPIC_API_KEY"),
 	}
 
 	if cfg.JWTSecret == "" {

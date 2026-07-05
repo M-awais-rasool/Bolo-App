@@ -123,6 +123,84 @@ func (r *Repository) MasteredCountInWindow(ctx context.Context, childID uuid.UUI
 	return n, err
 }
 
+func (r *Repository) MasteredWordIDs(ctx context.Context, childID uuid.UUID) ([]string, error) {
+	var ids []string
+	err := r.db.WithContext(ctx).Model(&MasteryWord{}).
+		Where("child_id = ? AND first_mastered_at IS NOT NULL", childID).
+		Order("word_id").
+		Pluck("word_id", &ids).Error
+	return ids, err
+}
+
+func (r *Repository) TotalMasteredCount(ctx context.Context, childID uuid.UUID) (int64, error) {
+	var n int64
+	err := r.db.WithContext(ctx).Model(&MasteryWord{}).
+		Where("child_id = ? AND first_mastered_at IS NOT NULL", childID).
+		Count(&n).Error
+	return n, err
+}
+
+func (r *Repository) MasteredSinceCount(ctx context.Context, childID uuid.UUID, since time.Time) (int64, error) {
+	var n int64
+	err := r.db.WithContext(ctx).Model(&MasteryWord{}).
+		Where("child_id = ? AND first_mastered_at >= ?", childID, since).
+		Count(&n).Error
+	return n, err
+}
+
+func (r *Repository) WeakPhonemesTop(ctx context.Context, childID uuid.UUID, limit int) ([]WeakPhoneme, error) {
+	var rows []WeakPhoneme
+	err := r.db.WithContext(ctx).
+		Where("child_id = ?", childID).
+		Order("miss_count DESC, last_seen_at DESC").
+		Limit(limit).
+		Find(&rows).Error
+	return rows, err
+}
+
+func (r *Repository) RecentAudioKeys(ctx context.Context, childID uuid.UUID, limit int) ([]string, error) {
+	var keys []string
+	err := r.db.WithContext(ctx).Model(&SpeechAttempt{}).
+		Joins("JOIN lesson_sessions ON lesson_sessions.id = speech_attempts.session_id").
+		Where("lesson_sessions.child_id = ? AND speech_attempts.audio_object_key IS NOT NULL", childID).
+		Order("speech_attempts.created_at DESC").
+		Limit(limit).
+		Pluck("speech_attempts.audio_object_key", &keys).Error
+	return keys, err
+}
+
+// PracticeDates returns the child's distinct practice days, newest first,
+// using the client clock for offline attempts when available.
+func (r *Repository) PracticeDates(ctx context.Context, childID uuid.UUID) ([]time.Time, error) {
+	var dates []time.Time
+	err := r.db.WithContext(ctx).Model(&SpeechAttempt{}).
+		Joins("JOIN lesson_sessions ON lesson_sessions.id = speech_attempts.session_id").
+		Where("lesson_sessions.child_id = ?", childID).
+		Distinct("date_trunc('day', COALESCE(speech_attempts.recorded_at, speech_attempts.created_at))::date").
+		Order("1 DESC").
+		Pluck("date_trunc('day', COALESCE(speech_attempts.recorded_at, speech_attempts.created_at))::date", &dates).Error
+	return dates, err
+}
+
+// --- audio retention (BACKEND_PLAN.md §12) ---
+
+func (r *Repository) ExpiredAudio(ctx context.Context, now time.Time, limit int) ([]SpeechAttempt, error) {
+	var rows []SpeechAttempt
+	err := r.db.WithContext(ctx).
+		Where("retain_until < ? AND audio_object_key IS NOT NULL", now).
+		Limit(limit).
+		Find(&rows).Error
+	return rows, err
+}
+
+// ClearAudioRef nulls the object reference after the object is deleted —
+// the score row survives, the recording does not.
+func (r *Repository) ClearAudioRef(ctx context.Context, attemptID uuid.UUID) error {
+	return r.db.WithContext(ctx).Model(&SpeechAttempt{}).
+		Where("id = ?", attemptID).
+		Update("audio_object_key", nil).Error
+}
+
 // --- weak phonemes ---
 
 func (r *Repository) BumpWeakPhoneme(ctx context.Context, childID uuid.UUID, phoneme string, at time.Time) error {
