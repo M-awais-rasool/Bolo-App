@@ -1,0 +1,1110 @@
+{
+  "schemaVersion": 1,
+  "revision": 3,
+  "lessons": [
+    {
+      "id": "greetings",
+      "title": "Greetings",
+      "emoji": "👋",
+      "theme": "green",
+      "intro": "Let's say hello today!",
+      "prompt": "A friend walks in! What do you say?",
+      "words": [
+        {
+          "id": "greetings.hello",
+          "label": "Hello",
+          "emoji": "👋",
+          "chips": [
+            "Hello,",
+            "nice to",
+            "meet you!"
+          ]
+        },
+        {
+          "id": "greetings.bye",
+          "label": "Bye bye",
+          "emoji": "🙋",
+          "chips": [
+            "Bye bye,",
+            "see you",
+            "soon!"
+          ]
+        },
+        {
+          "id": "greetings.thankyou",
+          "label": "Thank you",
+          "emoji": "💛",
+          "chips": [
+            "Thank you",
+            "for",
+            "helping me!"
+          ]
+        },
+        {
+          "id": "greetings.please",
+          "label": "Please",
+          "emoji": "🙏",
+          "chips": [
+            "Please,",
+            "can I",
+            "play too?"
+          ]
+        },
+        {
+          "id": "greetings.goodmorning",
+          "label": "Good morning",
+          "emoji": "☀️",
+          "chips": [
+            "Good morning,",
+            "wake up,",
+            "sunshine!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "th",
+        "asIn": "thank",
+        "tip": {
+          "pre": "Put your tongue ",
+          "bold": "behind your teeth",
+          "post": " and blow softly."
+        }
+      }
+    },
+    {
+      "id": "colors",
+      "title": "Colors",
+      "emoji": "🌈",
+      "theme": "purple",
+      "intro": "Let's paint with colors today!",
+      "prompt": "What color do you see? Say it in a sentence!",
+      "words": [
+        {
+          "id": "colors.red",
+          "label": "Red",
+          "emoji": "🍓",
+          "chips": [
+            "The berry",
+            "is",
+            "red!"
+          ]
+        },
+        {
+          "id": "colors.blue",
+          "label": "Blue",
+          "emoji": "🐳",
+          "chips": [
+            "The whale",
+            "is",
+            "blue!"
+          ]
+        },
+        {
+          "id": "colors.yellow",
+          "label": "Yellow",
+          "emoji": "🌟",
+          "chips": [
+            "The star",
+            "is",
+            "yellow!"
+          ]
+        },
+        {
+          "id": "colors.green",
+          "label": "Green",
+          "emoji": "🐸",
+          "chips": [
+            "The frog",
+            "is",
+            "green!"
+          ]
+        },
+        {
+          "id": "colors.purple",
+          "label": "Purple",
+          "emoji": "🍇",
+          "chips": [
+            "The grapes",
+            "are",
+            "purple!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "r",
+        "asIn": "red",
+        "tip": {
+          "pre": "Make your tongue ",
+          "bold": "buzz like a car",
+          "post": " — rrr, rrr!"
+        }
+      }
+    },
+    {
+      "id": "food",
+      "title": "Food",
+      "emoji": "🍎",
+      "theme": "coral",
+      "intro": "Let's talk about food today!",
+      "prompt": "What is this? Tell me in a whole sentence!",
+      "words": [
+        {
+          "id": "food.apple",
+          "label": "Apple",
+          "emoji": "🍎",
+          "chips": [
+            "It is",
+            "a red",
+            "apple"
+          ]
+        },
+        {
+          "id": "food.bread",
+          "label": "Bread",
+          "emoji": "🍞",
+          "chips": [
+            "I eat",
+            "yummy",
+            "bread!"
+          ]
+        },
+        {
+          "id": "food.egg",
+          "label": "Egg",
+          "emoji": "🥚",
+          "chips": [
+            "The egg",
+            "is",
+            "round!"
+          ]
+        },
+        {
+          "id": "food.water",
+          "label": "Water",
+          "emoji": "💧",
+          "chips": [
+            "I drink",
+            "cold",
+            "water!"
+          ]
+        },
+        {
+          "id": "food.mango",
+          "label": "Mango",
+          "emoji": "🥭",
+          "chips": [
+            "The mango",
+            "is",
+            "sweet!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "w",
+        "asIn": "water",
+        "tip": {
+          "pre": "Make your lips ",
+          "bold": "a tiny circle",
+          "post": " and blow — www!"
+        }
+      }
+    },
+    {
+      "id": "animals",
+      "title": "Animals",
+      "emoji": "🦁",
+      "theme": "gold",
+      "intro": "Let's meet the animals today!",
+      "prompt": "Which animal is this? What does it say?",
+      "words": [
+        {
+          "id": "animals.cat",
+          "label": "Cat",
+          "emoji": "🐱",
+          "chips": [
+            "The cat",
+            "says",
+            "meow!"
+          ]
+        },
+        {
+          "id": "animals.dog",
+          "label": "Dog",
+          "emoji": "🐶",
+          "chips": [
+            "The dog",
+            "says",
+            "woof!"
+          ]
+        },
+        {
+          "id": "animals.bird",
+          "label": "Bird",
+          "emoji": "🐦",
+          "chips": [
+            "The bird",
+            "can",
+            "fly high!"
+          ]
+        },
+        {
+          "id": "animals.fish",
+          "label": "Fish",
+          "emoji": "🐟",
+          "chips": [
+            "The fish",
+            "can",
+            "swim!"
+          ]
+        },
+        {
+          "id": "animals.lion",
+          "label": "Lion",
+          "emoji": "🦁",
+          "chips": [
+            "The lion",
+            "roars",
+            "so loud!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "m",
+        "asIn": "meow",
+        "tip": {
+          "pre": "Close your lips ",
+          "bold": "and hum",
+          "post": " like a happy cat."
+        }
+      }
+    },
+    {
+      "id": "family",
+      "title": "My family",
+      "emoji": "👨‍👩‍👧",
+      "theme": "pink",
+      "intro": "Let's talk about family today!",
+      "prompt": "Who is in your family? Tell me!",
+      "words": [
+        {
+          "id": "family.mama",
+          "label": "Mama",
+          "emoji": "👩",
+          "chips": [
+            "I love",
+            "my",
+            "mama!"
+          ]
+        },
+        {
+          "id": "family.papa",
+          "label": "Papa",
+          "emoji": "👨",
+          "chips": [
+            "My papa",
+            "is",
+            "so tall!"
+          ]
+        },
+        {
+          "id": "family.sister",
+          "label": "Sister",
+          "emoji": "👧",
+          "chips": [
+            "My sister",
+            "plays",
+            "with me!"
+          ]
+        },
+        {
+          "id": "family.brother",
+          "label": "Brother",
+          "emoji": "👦",
+          "chips": [
+            "My brother",
+            "is",
+            "funny!"
+          ]
+        },
+        {
+          "id": "family.baby",
+          "label": "Baby",
+          "emoji": "👶",
+          "chips": [
+            "The baby",
+            "is",
+            "so small!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "b",
+        "asIn": "baby",
+        "tip": {
+          "pre": "Pop your lips ",
+          "bold": "together",
+          "post": " — b! b! b!"
+        }
+      }
+    },
+    {
+      "id": "numbers",
+      "title": "Numbers",
+      "emoji": "🔢",
+      "theme": "blue",
+      "intro": "Let's count together today!",
+      "prompt": "How many do you see? Count out loud!",
+      "words": [
+        {
+          "id": "numbers.one",
+          "label": "One",
+          "emoji": "1️⃣",
+          "chips": [
+            "I have",
+            "one",
+            "nose!"
+          ]
+        },
+        {
+          "id": "numbers.two",
+          "label": "Two",
+          "emoji": "2️⃣",
+          "chips": [
+            "I have",
+            "two",
+            "hands!"
+          ]
+        },
+        {
+          "id": "numbers.three",
+          "label": "Three",
+          "emoji": "3️⃣",
+          "chips": [
+            "I can",
+            "count to",
+            "three!"
+          ]
+        },
+        {
+          "id": "numbers.four",
+          "label": "Four",
+          "emoji": "4️⃣",
+          "chips": [
+            "The cat",
+            "has",
+            "four legs!"
+          ]
+        },
+        {
+          "id": "numbers.five",
+          "label": "Five",
+          "emoji": "5️⃣",
+          "chips": [
+            "Give me",
+            "a high",
+            "five!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "th",
+        "asIn": "three",
+        "tip": {
+          "pre": "Let your tongue ",
+          "bold": "peek out",
+          "post": " and blow — th!"
+        }
+      }
+    },
+    {
+      "id": "body",
+      "title": "My body",
+      "emoji": "🖐️",
+      "theme": "green",
+      "intro": "Let's wiggle our body today!",
+      "prompt": "Point to it and tell me what it does!",
+      "words": [
+        {
+          "id": "body.eyes",
+          "label": "Eyes",
+          "emoji": "👀",
+          "chips": [
+            "I see",
+            "with my",
+            "eyes!"
+          ]
+        },
+        {
+          "id": "body.nose",
+          "label": "Nose",
+          "emoji": "👃",
+          "chips": [
+            "I smell",
+            "with my",
+            "nose!"
+          ]
+        },
+        {
+          "id": "body.ears",
+          "label": "Ears",
+          "emoji": "👂",
+          "chips": [
+            "I hear",
+            "with my",
+            "ears!"
+          ]
+        },
+        {
+          "id": "body.hands",
+          "label": "Hands",
+          "emoji": "🖐️",
+          "chips": [
+            "I clap",
+            "with my",
+            "hands!"
+          ]
+        },
+        {
+          "id": "body.feet",
+          "label": "Feet",
+          "emoji": "🦶",
+          "chips": [
+            "I jump",
+            "with my",
+            "feet!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "n",
+        "asIn": "nose",
+        "tip": {
+          "pre": "Hum through ",
+          "bold": "your nose",
+          "post": " — nnn, nnn!"
+        }
+      }
+    },
+    {
+      "id": "clothes",
+      "title": "Clothes",
+      "emoji": "👕",
+      "theme": "purple",
+      "intro": "Let's get dressed today!",
+      "prompt": "What are you wearing? Tell me!",
+      "words": [
+        {
+          "id": "clothes.shirt",
+          "label": "Shirt",
+          "emoji": "👕",
+          "chips": [
+            "I wear",
+            "a blue",
+            "shirt!"
+          ]
+        },
+        {
+          "id": "clothes.shoes",
+          "label": "Shoes",
+          "emoji": "👟",
+          "chips": [
+            "My shoes",
+            "are",
+            "so fast!"
+          ]
+        },
+        {
+          "id": "clothes.hat",
+          "label": "Hat",
+          "emoji": "🎩",
+          "chips": [
+            "The hat",
+            "is on",
+            "my head!"
+          ]
+        },
+        {
+          "id": "clothes.socks",
+          "label": "Socks",
+          "emoji": "🧦",
+          "chips": [
+            "My socks",
+            "are",
+            "stripy!"
+          ]
+        },
+        {
+          "id": "clothes.dress",
+          "label": "Dress",
+          "emoji": "👗",
+          "chips": [
+            "The dress",
+            "can",
+            "twirl!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "sh",
+        "asIn": "shirt",
+        "tip": {
+          "pre": "Finger on lips, ",
+          "bold": "shhh",
+          "post": " — like a quiet secret."
+        }
+      }
+    },
+    {
+      "id": "weather",
+      "title": "Weather",
+      "emoji": "⛅",
+      "theme": "gold",
+      "intro": "Let's look at the sky today!",
+      "prompt": "How is the sky today? Tell me!",
+      "words": [
+        {
+          "id": "weather.sun",
+          "label": "Sun",
+          "emoji": "☀️",
+          "chips": [
+            "The sun",
+            "is",
+            "shining!"
+          ]
+        },
+        {
+          "id": "weather.rain",
+          "label": "Rain",
+          "emoji": "🌧️",
+          "chips": [
+            "The rain",
+            "goes",
+            "drip drop!"
+          ]
+        },
+        {
+          "id": "weather.cloud",
+          "label": "Cloud",
+          "emoji": "☁️",
+          "chips": [
+            "The cloud",
+            "is",
+            "fluffy!"
+          ]
+        },
+        {
+          "id": "weather.wind",
+          "label": "Wind",
+          "emoji": "🌬️",
+          "chips": [
+            "The wind",
+            "goes",
+            "whoosh!"
+          ]
+        },
+        {
+          "id": "weather.snow",
+          "label": "Snow",
+          "emoji": "⛄",
+          "chips": [
+            "The snow",
+            "is",
+            "cold!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "r",
+        "asIn": "rain",
+        "tip": {
+          "pre": "Growl softly ",
+          "bold": "like thunder",
+          "post": " — rrr, rrr!"
+        }
+      }
+    },
+    {
+      "id": "home",
+      "title": "My home",
+      "emoji": "🏠",
+      "theme": "coral",
+      "intro": "Let's explore the house today!",
+      "prompt": "What's in your room? Tell me!",
+      "words": [
+        {
+          "id": "home.bed",
+          "label": "Bed",
+          "emoji": "🛏️",
+          "chips": [
+            "I sleep",
+            "in my",
+            "bed!"
+          ]
+        },
+        {
+          "id": "home.door",
+          "label": "Door",
+          "emoji": "🚪",
+          "chips": [
+            "Knock knock",
+            "on the",
+            "door!"
+          ]
+        },
+        {
+          "id": "home.chair",
+          "label": "Chair",
+          "emoji": "🪑",
+          "chips": [
+            "I sit",
+            "on the",
+            "chair!"
+          ]
+        },
+        {
+          "id": "home.window",
+          "label": "Window",
+          "emoji": "🪟",
+          "chips": [
+            "I look out",
+            "the",
+            "window!"
+          ]
+        },
+        {
+          "id": "home.lamp",
+          "label": "Lamp",
+          "emoji": "💡",
+          "chips": [
+            "The lamp",
+            "lights",
+            "the room!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "d",
+        "asIn": "door",
+        "tip": {
+          "pre": "Tap your tongue ",
+          "bold": "behind your teeth",
+          "post": " — d! d! d!"
+        }
+      }
+    },
+    {
+      "id": "school",
+      "title": "School",
+      "emoji": "🎒",
+      "theme": "blue",
+      "intro": "Let's pack for school today!",
+      "prompt": "What do you take to school? Tell me!",
+      "words": [
+        {
+          "id": "school.book",
+          "label": "Book",
+          "emoji": "📚",
+          "chips": [
+            "I read",
+            "a big",
+            "book!"
+          ]
+        },
+        {
+          "id": "school.pencil",
+          "label": "Pencil",
+          "emoji": "✏️",
+          "chips": [
+            "I draw",
+            "with a",
+            "pencil!"
+          ]
+        },
+        {
+          "id": "school.bag",
+          "label": "Bag",
+          "emoji": "🎒",
+          "chips": [
+            "My bag",
+            "is",
+            "heavy!"
+          ]
+        },
+        {
+          "id": "school.teacher",
+          "label": "Teacher",
+          "emoji": "🧑‍🏫",
+          "chips": [
+            "My teacher",
+            "is",
+            "kind!"
+          ]
+        },
+        {
+          "id": "school.friend",
+          "label": "Friend",
+          "emoji": "🤝",
+          "chips": [
+            "My friend",
+            "plays",
+            "with me!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "f",
+        "asIn": "friend",
+        "tip": {
+          "pre": "Bite your lip ",
+          "bold": "very gently",
+          "post": " and blow — fff!"
+        }
+      }
+    },
+    {
+      "id": "feelings",
+      "title": "Feelings",
+      "emoji": "😊",
+      "theme": "pink",
+      "intro": "Let's share feelings today!",
+      "prompt": "How do you feel today? Tell me!",
+      "words": [
+        {
+          "id": "feelings.happy",
+          "label": "Happy",
+          "emoji": "😊",
+          "chips": [
+            "I feel",
+            "so",
+            "happy!"
+          ]
+        },
+        {
+          "id": "feelings.sad",
+          "label": "Sad",
+          "emoji": "😢",
+          "chips": [
+            "The rain",
+            "makes me",
+            "sad."
+          ]
+        },
+        {
+          "id": "feelings.angry",
+          "label": "Angry",
+          "emoji": "😠",
+          "chips": [
+            "Stomp stomp,",
+            "I feel",
+            "angry!"
+          ]
+        },
+        {
+          "id": "feelings.sleepy",
+          "label": "Sleepy",
+          "emoji": "😴",
+          "chips": [
+            "Yawn…",
+            "I feel",
+            "sleepy."
+          ]
+        },
+        {
+          "id": "feelings.excited",
+          "label": "Excited",
+          "emoji": "🤩",
+          "chips": [
+            "Yay!",
+            "I am",
+            "excited!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "h",
+        "asIn": "happy",
+        "tip": {
+          "pre": "Breathe out soft ",
+          "bold": "like a sigh",
+          "post": " — hhh, hhh!"
+        }
+      }
+    },
+    {
+      "id": "playtime",
+      "title": "Playtime",
+      "emoji": "⚽",
+      "theme": "green",
+      "intro": "Let's play a game today!",
+      "prompt": "What do you play with? Tell me!",
+      "words": [
+        {
+          "id": "playtime.ball",
+          "label": "Ball",
+          "emoji": "⚽",
+          "chips": [
+            "Kick",
+            "the",
+            "ball!"
+          ]
+        },
+        {
+          "id": "playtime.doll",
+          "label": "Doll",
+          "emoji": "🪆",
+          "chips": [
+            "My doll",
+            "can",
+            "dance!"
+          ]
+        },
+        {
+          "id": "playtime.kite",
+          "label": "Kite",
+          "emoji": "🪁",
+          "chips": [
+            "The kite",
+            "flies",
+            "so high!"
+          ]
+        },
+        {
+          "id": "playtime.blocks",
+          "label": "Blocks",
+          "emoji": "🧱",
+          "chips": [
+            "I build",
+            "with",
+            "blocks!"
+          ]
+        },
+        {
+          "id": "playtime.slide",
+          "label": "Slide",
+          "emoji": "🛝",
+          "chips": [
+            "Wheee,",
+            "down the",
+            "slide!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "l",
+        "asIn": "ball",
+        "tip": {
+          "pre": "Sing la-la-la — ",
+          "bold": "touch the roof",
+          "post": " of your mouth!"
+        }
+      }
+    },
+    {
+      "id": "fruits",
+      "title": "Fruits & veggies",
+      "emoji": "🥕",
+      "theme": "gold",
+      "intro": "Let's crunch some veggies today!",
+      "prompt": "Which snack is this? Tell me!",
+      "words": [
+        {
+          "id": "fruits.banana",
+          "label": "Banana",
+          "emoji": "🍌",
+          "chips": [
+            "The banana",
+            "is",
+            "yellow!"
+          ]
+        },
+        {
+          "id": "fruits.carrot",
+          "label": "Carrot",
+          "emoji": "🥕",
+          "chips": [
+            "The bunny",
+            "eats",
+            "carrots!"
+          ]
+        },
+        {
+          "id": "fruits.orange",
+          "label": "Orange",
+          "emoji": "🍊",
+          "chips": [
+            "The orange",
+            "is",
+            "juicy!"
+          ]
+        },
+        {
+          "id": "fruits.peas",
+          "label": "Peas",
+          "emoji": "🫛",
+          "chips": [
+            "The peas",
+            "are",
+            "tiny!"
+          ]
+        },
+        {
+          "id": "fruits.tomato",
+          "label": "Tomato",
+          "emoji": "🍅",
+          "chips": [
+            "The tomato",
+            "is",
+            "red!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "p",
+        "asIn": "peas",
+        "tip": {
+          "pre": "Puff a tiny ",
+          "bold": "pop of air",
+          "post": " — p! p! p!"
+        }
+      }
+    },
+    {
+      "id": "vehicles",
+      "title": "Vehicles",
+      "emoji": "🚗",
+      "theme": "purple",
+      "intro": "Let's zoom around today!",
+      "prompt": "How do we go? Tell me the ride!",
+      "words": [
+        {
+          "id": "vehicles.car",
+          "label": "Car",
+          "emoji": "🚗",
+          "chips": [
+            "The car",
+            "goes",
+            "vroom!"
+          ]
+        },
+        {
+          "id": "vehicles.bus",
+          "label": "Bus",
+          "emoji": "🚌",
+          "chips": [
+            "The bus",
+            "is",
+            "big!"
+          ]
+        },
+        {
+          "id": "vehicles.train",
+          "label": "Train",
+          "emoji": "🚂",
+          "chips": [
+            "The train",
+            "goes",
+            "choo choo!"
+          ]
+        },
+        {
+          "id": "vehicles.plane",
+          "label": "Plane",
+          "emoji": "✈️",
+          "chips": [
+            "The plane",
+            "flies",
+            "up high!"
+          ]
+        },
+        {
+          "id": "vehicles.boat",
+          "label": "Boat",
+          "emoji": "⛵",
+          "chips": [
+            "The boat",
+            "sails",
+            "away!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "t",
+        "asIn": "train",
+        "tip": {
+          "pre": "Tick your tongue ",
+          "bold": "like a clock",
+          "post": " — t! t! t!"
+        }
+      }
+    },
+    {
+      "id": "nature",
+      "title": "Nature",
+      "emoji": "🌳",
+      "theme": "coral",
+      "intro": "Let's go outside today!",
+      "prompt": "What do you see outside? Tell me!",
+      "words": [
+        {
+          "id": "nature.tree",
+          "label": "Tree",
+          "emoji": "🌳",
+          "chips": [
+            "The tree",
+            "is",
+            "so tall!"
+          ]
+        },
+        {
+          "id": "nature.flower",
+          "label": "Flower",
+          "emoji": "🌸",
+          "chips": [
+            "The flower",
+            "smells",
+            "sweet!"
+          ]
+        },
+        {
+          "id": "nature.star",
+          "label": "Star",
+          "emoji": "⭐",
+          "chips": [
+            "The star",
+            "twinkles",
+            "at night!"
+          ]
+        },
+        {
+          "id": "nature.moon",
+          "label": "Moon",
+          "emoji": "🌙",
+          "chips": [
+            "The moon",
+            "glows",
+            "at night!"
+          ]
+        },
+        {
+          "id": "nature.river",
+          "label": "River",
+          "emoji": "🏞️",
+          "chips": [
+            "The river",
+            "flows",
+            "and flows!"
+          ]
+        }
+      ],
+      "sound": {
+        "letters": "m",
+        "asIn": "moon",
+        "tip": {
+          "pre": "Lips together, ",
+          "bold": "hum mmm",
+          "post": " — like something yummy!"
+        }
+      }
+    }
+  ]
+}
