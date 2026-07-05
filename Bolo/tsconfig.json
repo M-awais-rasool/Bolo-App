@@ -1,0 +1,14 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  // Node-side tooling (run with `npx tsx`), not part of the app bundle.
+  "exclude": [
+    "scripts"
+  ]
+}
