@@ -3,7 +3,6 @@ import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { colors } from '../../constants/colors';
-import { PhoneStatusBar } from '../common/PhoneStatusBar';
 
 interface ScreenProps {
   children: React.ReactNode;
@@ -19,20 +18,10 @@ interface ScreenProps {
   style?: StyleProp<ViewStyle>;
 }
 
-/**
- * The device canvas every screen sits inside.
- *
- * - Fills the phone edge-to-edge; on tablets it caps at a comfortable phone
- *   width and floats on the warm cream backdrop (mirrors the HTML, where the
- *   320px device floats on a cream body).
- * - Handles safe-area insets and renders the faux status bar at the top.
- */
 export function Screen({
   children,
   background,
   backgroundColor = colors.surface,
-  statusBarColor,
-  showStatusBar = true,
   bottomInset = true,
   style,
 }: ScreenProps) {
@@ -46,13 +35,12 @@ export function Screen({
           style={[
             styles.content,
             {
-              paddingTop: insets.top,
+              paddingTop: insets.top - 20,
               paddingBottom: bottomInset ? insets.bottom : 0,
             },
             style,
           ]}
         >
-          {showStatusBar && <PhoneStatusBar color={statusBarColor} />}
           {children}
         </View>
       </View>

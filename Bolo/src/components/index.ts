@@ -2,7 +2,6 @@
 export { Screen } from './layouts/Screen';
 
 // Common
-export { PhoneStatusBar } from './common/PhoneStatusBar';
 export { RadialBackground } from './common/RadialBackground';
 export { Icon } from './common/Icon';
 export type { IconName } from './common/Icon';
