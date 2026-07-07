@@ -1,64 +1,33 @@
-/**
- * Key-value persistence seam.
- *
- * The app talks to `KeyValueStore` only, so swapping the backing store —
- * AsyncStorage / MMKV on device, or a synced profile service at scale —
- * is a one-file change. Web builds persist to `localStorage` today;
- * native falls back to in-memory until a device store is plugged in.
- */
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export interface KeyValueStore {
   get(key: string): Promise<string | null>;
   set(key: string, value: string): Promise<void>;
   remove(key: string): Promise<void>;
 }
 
-function createLocalStorageStore(ls: Storage): KeyValueStore {
-  return {
-    async get(key) {
-      try {
-        return ls.getItem(key);
-      } catch {
-        return null;
-      }
-    },
-    async set(key, value) {
-      try {
-        ls.setItem(key, value);
-      } catch {
-        // Quota/private-mode failures are non-fatal: the app keeps working
-        // from memory and simply won't persist this session.
-      }
-    },
-    async remove(key) {
-      try {
-        ls.removeItem(key);
-      } catch {
-        // ignore
-      }
-    },
-  };
-}
+const memory = new Map<string, string>();
 
-function createMemoryStore(): KeyValueStore {
-  const map = new Map<string, string>();
-  return {
-    async get(key) {
-      return map.get(key) ?? null;
-    },
-    async set(key, value) {
-      map.set(key, value);
-    },
-    async remove(key) {
-      map.delete(key);
-    },
-  };
-}
-
-function detectStore(): KeyValueStore {
-  if (typeof window !== 'undefined' && typeof window.localStorage !== 'undefined') {
-    return createLocalStorageStore(window.localStorage);
-  }
-  return createMemoryStore();
-}
-
-export const storage: KeyValueStore = detectStore();
+export const storage: KeyValueStore = {
+  async get(key) {
+    try {
+      return await AsyncStorage.getItem(key);
+    } catch {
+      return memory.get(key) ?? null;
+    }
+  },
+  async set(key, value) {
+    try {
+      await AsyncStorage.setItem(key, value);
+    } catch {
+      memory.set(key, value);
+    }
+  },
+  async remove(key) {
+    try {
+      await AsyncStorage.removeItem(key);
+    } catch {
+      memory.delete(key);
+    }
+  },
+};

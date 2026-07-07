@@ -1,33 +1,14 @@
-/**
- * Remote pack loading: cache-then-network keyed by `revision`
- * (Bolo/BACKEND_PLAN.md §4.2).
- *
- * Boot order — chosen for a child on a flaky connection:
- *   1. bundled pack — always present, renders instantly
- *   2. cached pack  — applied at boot if newer (awaited; local, fast)
- *   3. CDN refresh  — background; a newer pack is cached and applied, and is
- *      still there on the next fully-offline launch
- * Every failure falls back one level; the app never blocks on the network.
- */
+import { PACKS_BASE_URL } from '../config/env';
 import { storage } from '../services/storage';
 import { applyContentPack, getContentPack } from './index';
 import type { ContentPack } from './types';
 
 const PACK_CACHE_KEY = 'bolo.contentPack.v1';
 
-/** Until child profiles pick a category in-app, everyone gets the KG pack. */
-const CATEGORY_CODE = 'KG';
-
-/**
- * Packs origin. Dev default is the MinIO container from server/docker-compose;
- * production builds point this at the CDN. Set to null to disable refresh.
- */
-const PACKS_BASE_URL: string | null = 'http://localhost:9000/bolo-packs';
+const DEFAULT_CATEGORY = 'KG';
 
 const FETCH_TIMEOUT_MS = 8000;
 
-/** Call once at boot, before first render. Resolves fast: only the local
- *  cache read is awaited; the network refresh continues in the background. */
 export async function hydrateContentPack(): Promise<void> {
   try {
     const raw = await storage.get(PACK_CACHE_KEY);
@@ -38,16 +19,15 @@ export async function hydrateContentPack(): Promise<void> {
       }
     }
   } catch {
-    // Corrupt cache — the bundled pack still works.
   }
-  void refreshFromRemote();
+  void refreshContentPack(DEFAULT_CATEGORY);
 }
 
-async function refreshFromRemote(): Promise<void> {
+export async function refreshContentPack(categoryCode: string = DEFAULT_CATEGORY): Promise<void> {
   if (!PACKS_BASE_URL) return;
   try {
     const latest = (await fetchJson(
-      `${PACKS_BASE_URL}/packs/${CATEGORY_CODE}/latest.json`,
+      `${PACKS_BASE_URL}/packs/${categoryCode}/latest.json`,
     )) as { revision?: unknown; url?: unknown };
     if (typeof latest?.revision !== 'number' || typeof latest?.url !== 'string') return;
     if (latest.revision <= getContentPack().revision) return;
@@ -76,8 +56,6 @@ async function fetchJson(url: string): Promise<unknown> {
   }
 }
 
-/** `schemaVersion` must match exactly — an old client never applies a pack
- *  shape it can't render (see types.ts). */
 function isPack(p: unknown): p is ContentPack {
   const pack = p as ContentPack;
   return (
